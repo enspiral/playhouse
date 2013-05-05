@@ -39,5 +39,13 @@ module Playhouse
         end
       end
     end
+
+    def call
+      perform
+    end
+
+    def perform
+      raise NotImplementedError.new("Context #{self.class.name} needs to override the perform method")
+    end
   end
 end
