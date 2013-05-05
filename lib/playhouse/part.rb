@@ -1,6 +1,8 @@
+require 'playhouse/validation/required_actor_validator'
+
 module Playhouse
   class Part
-    attr_accessor :name, :repository, :role, :composer
+    attr_accessor :name, :repository, :role, :composer, :optional
 
     def initialize(name, options = {})
       @name = name
@@ -12,6 +14,16 @@ module Playhouse
 
     def cast(actor)
       @role ? @role.cast_actor(actor) : actor
+    end
+
+    def required
+      !optional
+    end
+
+    def validators
+      result = []
+      result << RequiredActorValidator.new(part_name: name) if required
+      result
     end
   end
 end
