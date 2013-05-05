@@ -7,6 +7,10 @@ module Playhouse
       @context_name = context_name
       @actor_name = actor_name
     end
+
+    def description
+      message
+    end
   end
 
   class InvalidActorKeyError < ActorKeyError
@@ -34,6 +38,22 @@ module Playhouse
       @part_errors[part_name] ||= []
       @part_errors[part_name] << error
     end
+
+    def part_errors
+      @part_errors
+    end
+
+    def message
+      part_messages.join("\n")
+    end
+
+    private
+
+      def part_messages
+        @part_errors.map do |part_name, errors|
+          [part_name, errors.map(&:message).join(', ')].join(': ')
+        end
+      end
   end
 
   class ActorValidationError < Exception
@@ -46,7 +66,11 @@ module Playhouse
 
   class RequiredActorMissing < ActorValidationError
     def message
-      "Missing actor #{@name}"
+      "Missing actor #{@part_name}"
+    end
+
+    def description
+      "You must specify one of these"
     end
   end
 end
