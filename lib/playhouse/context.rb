@@ -1,3 +1,4 @@
+require 'active_support/core_ext/string/inflections'
 require 'playhouse/part'
 
 module Playhouse
@@ -20,6 +21,10 @@ module Playhouse
       def part_for(name)
         raise ArgumentError, "use a symbol for actor name" unless name.is_a?(Symbol)
         parts.detect {|definition| definition.name == name}
+      end
+
+      def method_name
+        name.split('::').last.underscore.to_sym
       end
     end
 
