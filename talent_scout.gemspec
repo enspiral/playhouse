@@ -15,6 +15,7 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 1.9.2'
 
   s.add_dependency 'rake'
+  s.add_dependency 'activesupport'
 
   # These need to become development dependencies only
   s.add_dependency 'rspec'
