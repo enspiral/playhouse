@@ -1,5 +1,6 @@
 require 'active_support/core_ext/string/inflections'
 require 'playhouse/part'
+require 'playhouse/validation/actors_validator'
 
 module Playhouse
   class Context
@@ -41,11 +42,20 @@ module Playhouse
     end
 
     def call
+      validate_actors
       perform
     end
 
     def perform
       raise NotImplementedError.new("Context #{self.class.name} needs to override the perform method")
+    end
+
+    def validate_actors
+      validator.validate_actors(self.class.parts, @actors)
+    end
+
+    def validator
+      ActorsValidator.new
     end
   end
 end
