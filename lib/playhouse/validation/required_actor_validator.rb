@@ -1,7 +1,7 @@
 module Playhouse
   class ActorValidator
     def initialize(options)
-      @part_name = options[:name]
+      @part_name = options[:part_name]
     end
 
     private
@@ -11,7 +11,7 @@ module Playhouse
 
   class RequiredActorValidator < ActorValidator
     def validate_actor(actor)
-      raise RequiredActorMissing.new(name: part_name) if actor.nil?
+      raise RequiredActorMissing.new(part_name: part_name) if actor.nil?
     end
   end
 end

@@ -22,7 +22,7 @@ module Playhouse
 
     def validators
       result = []
-      result << RequiredActorValidator.new(name: name) if required
+      result << RequiredActorValidator.new(part_name: name) if required
       result
     end
   end
