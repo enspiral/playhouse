@@ -36,6 +36,7 @@ module Playhouse
         ExampleContext.actor :foobar, role: role
         role.should_receive(:cast_actor).with('value').and_return("cast value")
         subject = ExampleContext.new(foobar: 'value')
+        subject.call
         subject.foobar.should == 'cast value'
       end
     end
