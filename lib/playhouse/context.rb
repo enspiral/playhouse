@@ -73,5 +73,9 @@ module Playhouse
           @actors[name] = part.cast(actor)
         end
       end
+
+      def actors
+        @actors
+      end
   end
 end
