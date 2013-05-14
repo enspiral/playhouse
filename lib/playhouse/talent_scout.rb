@@ -6,19 +6,15 @@ require 'playhouse/scouts/entity_from_repository'
 # might be a bit creative since I felt the need to explain it.
 module Playhouse
   class TalentScout
-    def initialize(context_class)
-      @context_class = context_class
-    end
-
-    def build_context(params)
-      @context_class.new(actors_for_params(params))
+    def build_context(context_class, params)
+      context_class.new(actors_for_params(context_class, params))
     end
 
     private
 
-    def actors_for_params(params)
+    def actors_for_params(context_class, params)
       actors = {}
-      @context_class.parts.each do |part|
+      context_class.parts.each do |part|
         actor = actor_for_part(part, params)
         actors[part.name] = actor if actor
       end

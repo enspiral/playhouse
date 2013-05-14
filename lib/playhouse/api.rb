@@ -1,3 +1,5 @@
+require 'playhouse/talent_scout'
+
 module Playhouse
   class API
     class << self
@@ -5,7 +7,7 @@ module Playhouse
         context_classes << context_class
 
         define_method context_class.method_name do |params|
-          context_class.new(params).call
+          execute_context(context_class, params)
         end
       end
 
@@ -14,8 +16,16 @@ module Playhouse
       end
     end
 
+    def initialize(talent_scout = TalentScout.new)
+      @talent_scout = talent_scout
+    end
+
     def commands
       self.class.context_classes
+    end
+
+    def execute_context(context_class, params)
+      @talent_scout.build_context(context_class, params).call
     end
   end
 end

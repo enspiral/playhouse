@@ -5,7 +5,7 @@ require 'playhouse/context'
 module Playhouse
   describe TalentScout do
     context "for a context with a single actor" do
-      subject { TalentScout.new(@context_class) }
+      subject { TalentScout.new }
       let(:actor) { mock(:actor) }
 
       before do
@@ -22,17 +22,17 @@ module Playhouse
 
           it "finds the entity using the supplied id" do
             entity_repository.should_receive(:find).with('2').and_return(actor)
-            context = subject.build_context('source_account_id' => '2')
+            context = subject.build_context(@context_class, :source_account_id => '2')
             context.source_account.should == actor
           end
 
           it "finds no entity if no id is supplied" do
-            context = subject.build_context('some_other_id' => '2')
+            context = subject.build_context(@context_class, :some_other_id => '2')
             context.source_account.should == nil
           end
 
           it "uses the entity itself if it is supplied" do
-            context = subject.build_context('source_account' => actor)
+            context = subject.build_context(@context_class, :source_account => actor)
             context.source_account.should == actor
           end
         end
@@ -43,12 +43,12 @@ module Playhouse
           end
 
           it "does not find the entity" do
-            context = subject.build_context('source_account_id' => '2')
+            context = subject.build_context(@context_class, :source_account_id => '2')
             context.source_account.should == nil
           end
 
           it "uses the entity itself if it is supplied" do
-            context = subject.build_context('source_account' => actor)
+            context = subject.build_context(@context_class, :source_account => actor)
             context.source_account.should == actor
           end
         end
@@ -66,7 +66,7 @@ module Playhouse
             attributes = {'name' => 'Fred Savings'}
             composer.should_receive(:compose).with({'name' => 'Fred Savings'}).and_return(actor)
 
-            context = subject.build_context('source_account_attributes' => attributes)
+            context = subject.build_context(@context_class, :source_account_attributes => attributes)
 
             context.source_account.should == actor
           end
