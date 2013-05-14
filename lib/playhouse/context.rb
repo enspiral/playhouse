@@ -77,5 +77,11 @@ module Playhouse
       def actors
         @actors
       end
+
+      def actors_except(*exceptions)
+        actors.reject do |key, value|
+          exceptions.include?(key)
+        end
+      end
   end
 end
