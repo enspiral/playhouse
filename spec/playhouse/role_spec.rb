@@ -61,5 +61,12 @@ module Playhouse
         end
       end
     end
+
+    context "when casting an enumerable as" do
+      it "extends each member of the enumerable" do
+        players = subject.cast_all([valid_actor])
+        players.first.foobar.should == 'awesome!'
+      end
+    end
   end
 end

@@ -12,6 +12,12 @@ module Playhouse
         actor.extend(self)
       end
 
+      def cast_all(actor_collection)
+        actor_collection.map do |actor|
+          cast_actor(actor)
+        end
+      end
+
       private
 
       class Dependency
