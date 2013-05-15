@@ -1,14 +1,14 @@
 require 'spec_helper'
 require 'playhouse/context'
-require 'playhouse/api'
+require 'playhouse/play'
 
 module Playhouse
-  describe API do
+  describe Play do
     before do
       class CalculateTax < Context
       end
 
-      class ExampleAPI < API
+      class ExampleAPI < Play
         context CalculateTax
       end
     end

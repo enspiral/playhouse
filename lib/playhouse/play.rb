@@ -1,7 +1,7 @@
 require 'playhouse/talent_scout'
 
 module Playhouse
-  class API
+  class Play
     class << self
       def context(context_class)
         context_classes << context_class
