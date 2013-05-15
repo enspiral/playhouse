@@ -25,7 +25,13 @@ module Playhouse
       end
 
       def method_name
-        name.split('::').last.underscore.to_sym
+        context_name_parts.join('').underscore.to_sym
+      end
+
+      private
+
+      def context_name_parts
+        name.split('::')[1..-1].reverse
       end
     end
 
