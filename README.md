@@ -192,7 +192,7 @@ For a web app, it's quite possible to use Sinatra or Rails as your delivery laye
 
 ##Licence
 
-Playhouse is licenced under the MIT licence.
+Playhouse is licenced under the MIT licence. Copyright 2013 Enspiral Services Ltd.
 
 ##Contributing
 
@@ -202,5 +202,6 @@ issues first.
 ##Credits
 
 From Enspiral Craftworks:
-Craig Ambrose (@craigambrose)
-Joshua Vial (@joshuavial)
+
+* Craig Ambrose (@craigambrose)
+* Joshua Vial (@joshuavial)
