@@ -6,14 +6,14 @@ module Playhouse
   describe TalentScout do
     context "for a context with a single actor" do
       subject { TalentScout.new }
-      let(:actor) { mock(:actor) }
+      let(:actor) { double(:actor) }
 
       before do
         @context_class = Class.new(Context)
       end
 
       context "which is an entity" do
-        let(:entity_repository) { mock(:repository) }
+        let(:entity_repository) { double(:repository) }
 
         context "with a repository specified" do
           before do
@@ -56,7 +56,7 @@ module Playhouse
 
       context "which is a non persisted object" do
         context "with a composer specified" do
-          let(:composer) { mock(:composer) }
+          let(:composer) { double(:composer) }
 
           before do
             @context_class.actor(:source_account, composer: composer)

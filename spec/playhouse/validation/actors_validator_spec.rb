@@ -3,7 +3,7 @@ require 'playhouse/validation/actors_validator'
 
 module Playhouse
   describe ActorsValidator do
-    let(:part) { mock(:part, name: :foobar, validators: []) }
+    let(:part) { double(:part, name: :foobar, validators: []) }
 
     describe "#validate_actors" do
       it "does nothing part has no validators" do
@@ -12,7 +12,7 @@ module Playhouse
 
       context "with invalid fields" do
         before do
-          invalid_validator = mock(:validator)
+          invalid_validator = double(:validator)
           invalid_validator.should_receive(:validate_actor).with(123).and_raise(RequiredActorMissing.new(part_name: :foobar))
           part.stub(validators: [invalid_validator])
         end

@@ -24,7 +24,7 @@ module Playhouse
     end
 
     describe ".actor" do
-      let(:role) { mock(:role) }
+      let(:role) { double(:role) }
 
       it "allows the actor to be passed into the constructor and stored" do
         ExampleContext.actor :foobar

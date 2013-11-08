@@ -20,7 +20,7 @@ module Playhouse
 
     describe "when instantiated" do
       subject { ExampleAPI.new }
-      let(:context) { mock(:context) }
+      let(:context) { double(:context) }
 
       it "presents contexts as callable methods" do
         CalculateTax.actor :taxable_income
