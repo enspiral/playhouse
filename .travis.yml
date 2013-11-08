@@ -2,3 +2,9 @@ rvm:
   - "2.0.0"
 script: "rake ci"
 before_script: "rake setup_ci"
+notifications:
+  hipchat:
+    rooms:
+      - 3d318fc3e1f401238a50171784b534@Craftworks General
+    template: '%{repository}#%{build_number} (%{branch} - %{commit} : %{author}): %{message} (<a href="%{build_url}">Details</a>/<a href="%{compare_url}">Change view</a>)'
+    format: html
