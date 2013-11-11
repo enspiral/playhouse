@@ -30,6 +30,10 @@ module Playhouse
         #subject.respond_to?(:calculate_tax).should be_true
         subject.calculate_tax taxable_income: 123
       end
+
+      it 'has a name' do
+        expect(subject.name).to eq('example_api')
+      end
     end
   end
 end

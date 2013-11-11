@@ -27,5 +27,10 @@ module Playhouse
     def execute_context(context_class, params)
       @talent_scout.build_context(context_class, params).call
     end
+
+    def name
+      self.class.name.split('::')[1..-1].join('').underscore
+    end
   end
+
 end

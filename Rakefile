@@ -12,3 +12,5 @@ end
 desc "Test this console interface"
 task :ci => [:spec] do
 end
+
+task default: :ci
