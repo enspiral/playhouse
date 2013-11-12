@@ -16,8 +16,5 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'rake'
   s.add_dependency 'activesupport'
-
-  # These need to become development dependencies only
-  s.add_dependency 'rspec'
-  s.add_dependency 'coveralls'
+  s.add_dependency 'activerecord'
 end

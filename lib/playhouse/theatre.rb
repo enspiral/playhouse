@@ -1,3 +1,6 @@
+require 'yaml'
+require 'active_record'
+
 module Playhouse
   class Theatre
     attr_reader :root_path
