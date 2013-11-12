@@ -1,3 +1,4 @@
+require 'active_support/core_ext/string/inflections'
 require 'playhouse/talent_scout'
 
 module Playhouse
@@ -29,7 +30,7 @@ module Playhouse
     end
 
     def name
-      self.class.name.split('::')[1..-1].join('').underscore
+      self.class.name.split('::').last.underscore
     end
   end
 
