@@ -5,6 +5,7 @@ require 'playhouse/validation/actors_validator'
 module Playhouse
   class Context
     class << self
+
       def parts
         @actor_definitions ||= []
       end
@@ -26,6 +27,20 @@ module Playhouse
 
       def method_name
         context_name_parts.join('').underscore.to_sym
+      end
+
+      def http_method(method=:post)
+        @http_methods ||= []
+        if method.is_a?(Array)
+          @http_methods.concat method
+        else
+          @http_methods << method
+        end
+      end
+
+      def http_methods
+        return [:get] if @http_methods.nil?
+        @http_methods.uniq
       end
 
       private
