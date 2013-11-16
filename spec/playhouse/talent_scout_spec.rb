@@ -63,10 +63,10 @@ module Playhouse
           end
 
           it "allows the composer to build the object from it's attributes" do
-            attributes = {'name' => 'Fred Savings'}
-            composer.should_receive(:compose).with({'name' => 'Fred Savings'}).and_return(actor)
+            params = {source_account: 'Fred Savings'}
+            composer.should_receive(:compose).with('Fred Savings').and_return(actor)
 
-            context = subject.build_context(@context_class, :source_account_attributes => attributes)
+            context = subject.build_context(@context_class, params)
 
             context.source_account.should == actor
           end

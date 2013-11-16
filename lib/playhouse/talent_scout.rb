@@ -22,7 +22,7 @@ module Playhouse
     end
 
     def scouts
-      [Scouts::DirectValue, Scouts::EntityFromRepository, Scouts::BuildWithComposer].map(&:new)
+      [Scouts::BuildWithComposer, Scouts::DirectValue, Scouts::EntityFromRepository].map(&:new)
     end
 
     def actor_for_part(part, params)
