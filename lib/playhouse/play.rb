@@ -15,6 +15,12 @@ module Playhouse
       def context_classes
         @context_classes ||= []
       end
+
+      def contexts_for(resource_module)
+        resource_module.constants.each do |constant|
+          context resource_module.const_get(constant)
+        end
+      end
     end
 
     def initialize(talent_scout = TalentScout.new)
