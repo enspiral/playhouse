@@ -26,5 +26,15 @@ module Playhouse
         subject.run(theatre: theatre, interface: interface)
       end
     end
+
+    describe "#plays" do
+      let(:play_class) { double(:play_class, new: play) }
+      let(:play)       { double(:play) }
+
+      it "has a collection of plays which can be added" do
+        subject.add_play play_class
+        subject.plays.should == [play]
+      end
+    end
   end
 end
