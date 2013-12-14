@@ -2,6 +2,14 @@ require 'active_support/core_ext/string/inflections'
 require 'playhouse/talent_scout'
 
 module Playhouse
+  # A Play is a cohesive collection of application logic (in the form of Contexts).
+  # Your production might just contain one play, or you might prefer to have several
+  # plays each with their own theme. Contexts are typically called through a play rather
+  # that directly, and the Play will use it's TalentScout to ensure that the correct
+  # Actors are found.
+  #
+  # Contexts within your play can call each other, but should not call Contexts in other
+  # Plays directly, but can do so be calling the public interface on another Play.
   class Play
     class << self
       def context(context_class)

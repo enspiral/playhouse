@@ -31,19 +31,22 @@ module Playhouse
       @load_db =     options.value_or_default :load_db, true
     end
 
-    def stage
-      start_staging
-      yield
-      stop_staging
+    def while_open
+      open
+      begin
+        yield
+      ensure
+        close
+      end
     end
 
-    def start_staging
+    def open
       Dir.chdir @root_path
       connect_to_database
       self.class.current = self
     end
 
-    def stop_staging
+    def close
       self.class.clear_current
     end
 

@@ -9,6 +9,10 @@ module Playhouse
         value_or_do(key) { raise(error) }
       end
 
+      def required_value(key)
+        value_or_error(key, ArgumentError.new("Missing required argument #{key}"))
+      end
+
       private
 
         def value_or_do(key)

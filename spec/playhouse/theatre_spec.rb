@@ -14,20 +14,20 @@ module Playhouse
     end
 
     describe ".current" do
-      it "is set to this theatre if you start staging" do
-        subject.start_staging
+      it "is set to this theatre if you open the theatre" do
+        subject.open
         Theatre.current.should == subject
       end
 
-      it "is cleared if you stop staging" do
-        subject.start_staging
-        subject.stop_staging
+      it "is cleared if you close" do
+        subject.open
+        subject.close
         Theatre.current.should be_nil
       end
 
-      it "raises an error if there is already something else staged" do
-        test_theatre.start_staging
-        expect { subject.start_staging }.to raise_error
+      it "raises an error if there is already something else open" do
+        test_theatre.open
+        expect { subject.open }.to raise_error
       end
     end
   end
