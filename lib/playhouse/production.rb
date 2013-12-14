@@ -16,7 +16,7 @@ module Playhouse
       interface_instance = interface.build(self)
 
       theatre.while_open do
-        interface_instance.run
+        interface_instance.run options[:interface_args]
       end
     end
 

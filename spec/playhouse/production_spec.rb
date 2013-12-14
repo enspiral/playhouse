@@ -25,6 +25,13 @@ module Playhouse
 
         subject.run(theatre: theatre, interface: interface)
       end
+
+      it "passes optional interface_args parameter through to interface" do
+        theatre.stub(:while_open).and_yield
+        instance.should_receive(:run).with("args")
+
+        subject.run(theatre: theatre, interface: interface, interface_args: "args")
+      end
     end
 
     describe "#plays" do
