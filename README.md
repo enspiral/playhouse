@@ -13,8 +13,8 @@ presentation logic, it is typically connected to some sort of delivery layer.
 
 Playhouse is not yet at version 1.0.
 
-It is being used for it's first production apps now, but it's interface may change rapidly and
-at any point, so doing so it not advised unless you are actively involved in Playhouse
+It is being used for its first production apps now, but its interface may change rapidly and
+at any point, so doing so is not advised unless you are actively involved in Playhouse
 development.
 
 ##Installation
@@ -40,7 +40,7 @@ application logic.
 
 ###Entities
 
-Entities are the "Data" part of DCI. They represent you Domain models that you probably
+Entities are the "Data" part of DCI. They represent your Domain models that you probably
 want to persist to a data store of some sort. To avoid the sort of complexity that often
 occurs in models in Rails apps, Playhouse entities should have no functionality other than
 defining their data structure and connecting to the persistance layer.
@@ -58,7 +58,7 @@ any object).
 ### Roles
 
 Roles are modules that are mixed into to Actors at runtime. Specifically note that they are
-used to extend objects, no classes. If you're not familiar with this, go read up on DCI.
+used to extend objects, not classes. If you're not familiar with this, go read up on DCI.
 
 Playhouse defines a Role module to provide this behaviour, although it is implemented just
 using Ruby's `extend` method. A role in your Playhouse app looks as follows:
@@ -96,7 +96,7 @@ the methods specified (minimum_balance and bank in the above example).
 Each of your contexts is a command that your app performs, which you could also think of as
 a use case. In essence, a context is supplied with Actors, "casts" them in various Roles and
 then executes some behaviour. In keeping with conventions of most people using DCI in ruby,
-executing a context is done by calling it's `call` method.
+executing a context is done by calling its `call` method.
 
 Playhouse provides a base Context class for you to derive from. Rather than implementing
 `call` directly though, please override our `perform` method so that we can perform some
@@ -118,21 +118,21 @@ module Economatic
 end
 ```
 This Balance enquiry context is fairly simple. Your context perform method might have more
-lines than this, and it might be good if it is lists the main high level steps for
+lines than this, and it might be good if it lists the main high level steps for
 performing this feature. However, the serious application logic goes into your roles.
 
 To calculate a balance, this context just needs one actor, an account, and it casts it
 as a role (AccountTransactionCollection) which actually knows how to calculate a balance
-by summing transactions. Actors are all required be default (unless you specify the
+by summing transactions. Actors are all required by default (unless you specify the
 `optional: true` option), and so building this context without an account will raise an
 exception. Specifying the Account repository can be used to find accounts, allows other
 parts of Playhouse to build this Context by asking Account to fetch an account given an
-id. Remember as well tha the AccountTransactionCollection role will check that the account
+id. Remember as well that the AccountTransactionCollection role will check that the account
 has the methods it is dependent on.
 
 The return value from your context is returned to the code calling your application
 (which is often your delivery layer or another application), and we suggest that this
-should be fairly dumb object. Context should return data, you shouldn't use their return value
+should be a fairly dumb object. Context should return data, you shouldn't use their return value
 in ways that transform it, save data, etc.
 
 ##An Interface to Your Application
