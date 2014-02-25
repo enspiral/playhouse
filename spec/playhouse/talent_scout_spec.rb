@@ -11,6 +11,24 @@ module Playhouse
       before do
         @context_class = Class.new(Context)
       end
+      
+      describe "build_context_with_parent" do
+        before do
+          @parent = double(:context)
+          @child = double(:context, inherit_actors_from: nil)
+          subject.stub(:build_context).and_return(@child)
+        end
+
+        it 'wraps build_context' do
+          expect(subject).to receive(:build_context).with(@context_class, {})
+          subject.build_context_with_parent @parent, @context_class, {}
+        end
+
+        it 'calls inherit_actors on the child' do
+          expect(@child).to receive(:inherit_actors_from).with(@parent)
+          subject.build_context_with_parent @parent, @context_class, {}
+        end
+      end
 
       context "which is an entity" do
         let(:entity_repository) { double(:repository) }

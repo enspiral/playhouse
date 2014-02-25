@@ -10,6 +10,12 @@ module Playhouse
       context_class.new(actors_for_params(context_class, params))
     end
 
+    def build_context_with_parent(parent, context_class, params)
+      context = build_context context_class, params
+      context.inherit_actors_from parent
+      context
+    end
+
     private
 
     def actors_for_params(context_class, params)
