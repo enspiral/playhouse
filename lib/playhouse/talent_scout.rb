@@ -13,7 +13,7 @@ module Playhouse
     def build_context_with_parent(parent, context_class, params)
       context = build_context context_class, params
       context.inherit_actors_from parent
-      context
+      context.call
     end
 
     private
