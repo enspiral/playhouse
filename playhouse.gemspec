@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = "playhouse"
-  s.version = '0.1.0'
+  s.version = '0.1.1'
   s.authors = ["Craig Ambrose", "Joshua Vial"]
   s.email = ["craig@enspiral.com", "joshua@enspiral.com"]
   s.homepage = "https://github.com/enspiral/economatic"
