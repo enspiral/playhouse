@@ -40,6 +40,35 @@ module Playhouse
         subject.foobar.should == 'cast value'
       end
     end
+    
+    describe '#inherit_actors_from' do
+      before do
+        class ParentContext < Context
+          actor :current_user
+          actor :other_actor
+        end
+        @parent = ParentContext.new current_user: 'user', other_actor: 'other'
+        ExampleContext.actor :current_user
+      end
+
+      it 'loads actors that are unset' do
+        subject = ExampleContext.new
+        subject.inherit_actors_from @parent
+        expect(subject.current_user).to eq 'user'
+      end
+
+      it 'does not load actors that are already set' do
+        subject = ExampleContext.new current_user: 'user override'
+        subject.inherit_actors_from @parent
+        expect(subject.current_user).to eq 'user override'
+      end
+
+      it 'does not load actors for which it has no part' do
+        subject = ExampleContext.new
+        subject.inherit_actors_from @parent
+        expect{subject.other_actor}.to raise_error
+      end
+    end
 
     describe '#call' do
       it 'calls perform' do

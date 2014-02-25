@@ -54,6 +54,14 @@ module Playhouse
       store_expected_actors(actors)
     end
 
+    def inherit_actors_from(parent)
+      parent.send(:actors).each do |name, actor|
+        if actors[name].nil? && self.class.part_for(name)
+          store_actor name, actor
+        end
+      end
+    end
+
     def call
       validate_actors
       cast_actors
@@ -79,12 +87,16 @@ module Playhouse
       def store_expected_actors(actors)
         @actors = {}
         actors.each do |name, actor|
-          part = self.class.part_for(name)
-          if part
-            @actors[name] = actor
-          else
-            raise UnknownActorKeyError.new(self.class.name, name)
-          end
+          store_actor name, actor
+        end
+      end
+
+      def store_actor(name, actor)
+        part = self.class.part_for(name)
+        if part
+          @actors[name] = actor
+        else
+          raise UnknownActorKeyError.new(self.class.name, name)
         end
       end
 
