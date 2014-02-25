@@ -18,7 +18,7 @@ module Playhouse
       Playhouse.class_eval{remove_const :CalculateTax}
     end
 
-    describe 'when instantiated' do
+    context 'when instantiated' do
       subject { ExampleAPI.new }
       let(:context) { double(:context) }
 
@@ -29,6 +29,13 @@ module Playhouse
 
         #subject.respond_to?(:calculate_tax).should be_true
         subject.calculate_tax taxable_income: 123
+      end
+      
+      it 'presents callable methods with parent' do
+        parent = double(:context)
+        expect(subject).to receive(:execute_context_with_parent)
+        
+        subject.calculate_tax_with_parent parent, {}
       end
 
       it 'has a name' do

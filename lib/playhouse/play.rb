@@ -18,6 +18,10 @@ module Playhouse
         define_method context_class.method_name do |params|
           execute_context(context_class, params)
         end
+        
+        define_method "#{context_class.method_name}_with_parent" do |parent, params|
+          execute_context_with_parent(parent, context_class, params)
+        end
       end
 
       def context_classes
@@ -41,6 +45,10 @@ module Playhouse
 
     def execute_context(context_class, params)
       @talent_scout.build_context(context_class, params).call
+    end
+    
+    def execute_context_with_parent(parent, context_class, params)
+      @talent_scout.build_context_with_parent(parent, context_class, params)
     end
 
     def name
