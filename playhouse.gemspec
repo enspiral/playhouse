@@ -3,7 +3,7 @@ Gem::Specification.new do |s|
   s.version = '0.1.1'
   s.authors = ["Craig Ambrose", "Joshua Vial"]
   s.email = ["craig@enspiral.com", "joshua@enspiral.com"]
-  s.homepage = "https://github.com/enspiral/economatic"
+  s.homepage = "https://github.com/enspiral/playhouse"
   s.summary = "A DCI framework"
   s.description = "Provides one possible way of implementing a DCI architecture in a ruby app"
 
