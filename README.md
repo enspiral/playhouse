@@ -43,9 +43,9 @@ application logic.
 Entities are the "Data" part of DCI. They represent your Domain models that you probably
 want to persist to a data store of some sort. To avoid the sort of complexity that often
 occurs in models in Rails apps, Playhouse entities should have no functionality other than
-defining their data structure and connecting to the persistance layer.
+defining their data structure and connecting to the persistence layer.
 
-Playhouse does not care what persistance library you use. ActiveRecord works fine, just add
+Playhouse does not care what persistence library you use. ActiveRecord works fine, just add
 the gem to your app and start using it. We recommend you don't use validations (Contexts do
 validations in Playhouse), keep relationships to necessary ones only, and don't use scopes
 (queries go in Roles).
